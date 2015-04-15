@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://webapplayers.com/inspinia_admin-v2.0/form_basic.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Контроль исполнения поручениями</title>
+    <link href="http://webapplayers.com/inspinia_admin-v2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://webapplayers.com/inspinia_admin-v2.0/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="http://webapplayers.com/inspinia_admin-v2.0/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="http://webapplayers.com/inspinia_admin-v2.0/css/animate.css" rel="stylesheet">
+    <link href="http://webapplayers.com/inspinia_admin-v2.0/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="-webkit-transform: translate3d(100%, 0px, 0px); transform: translate3d(100%, 0px, 0px);">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="{{ employee.picture.url }}" width="70" height="70">
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="http://webapplayers.com/inspinia_admin-v2.0/form_basic.html#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ employee.user.first_name }} {{ employee.user.last_name}}</strong>
+                             </span> <span class="text-muted text-xs block">{{ employee.position }} </span> </span> </a>
+                    </div>
+                    <div class="logo-element">
+                        IN+
+                    </div>
+                </li>
+                <li class="special_link">
+                    <a href="/task/"> <span class="nav-label">Список задач</span> </a>
+                </li>
+                <li>
+                    <a href="/task/create_task/"> <span class="nav-label">Поставить задачу</span> </a>
+                </li>
+                <li>
+                    <a href="/task/send_message/"> <span class="nav-label">Отправить сообщение</span> </a>
+                </li>
+                <li>
+                    <a href="/task/create_report/"> <span class="nav-label">Закрыть задачу</span> </a>
+                </li>
+            </ul>
+                              {% load staticfiles %}
+                            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="col-lg-2">
+<img src="{% static 'kz.png' %}" width="120" height="70">
+                </div>
+
+
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg" style="min-height: 728px;">
+        <div class="row border-bottom">
+        </div>
+            
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+        </div>
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h2> {{ task.title }} </h2>
+                        </div>
+                        <div class="ibox-content">
+                                <p> {{ task.description }} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox float-e-margins">
+                         <div class="col-lg-12">
+                        <div class="timeline-item ibox-title">
+                                        {% for message in messages %}
+                                        <div class="row">
+                                            <div class="col-lg-4 date">
+                                                {{ message.date_published }}
+                                                <br/>
+                                            </div>
+                                            <div class="col-lg-9 content no-top-border">
+                                                <p class="m-b-xs"><strong>{{ message.owner.user.first_name }} {{ message.owner.user.last_name }}</strong></p>
+
+                                                <p>{{ message.text }}</p>
+
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    <br>
+                                    <br>
+                                    <div class="hr-line-dashed"></div>
+                                    <form method="post" class="form-horizontal" action="/task/show_detail/">
+                                {% csrf_token %}
+                                
+                                         
+                                <input value="{{ task.id }}" name="task_id" type="hidden">
+                                
+                                
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <textarea type="text" class="form-control" name="description"> </textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-primary" type="submit">Отправить сообщение</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+        </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="./INSPINIA   Basic Form_files/jquery-2.1.1.js"></script>
+    <script src="./INSPINIA   Basic Form_files/bootstrap.min.js"></script>
+    <script src="./INSPINIA   Basic Form_files/jquery.metisMenu.js"></script>
+    <script src="./INSPINIA   Basic Form_files/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="./INSPINIA   Basic Form_files/inspinia.js"></script>
+    <script src="./INSPINIA   Basic Form_files/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="./INSPINIA   Basic Form_files/icheck.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+        </script>
+
+
+
+
+</script></body></html>
